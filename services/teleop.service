@@ -1,0 +1,15 @@
+[Unit]
+Description=msd teleop joystick launcher
+After=roscore.service
+Requires=roscore.service
+ 
+[Service]
+User=jetson
+#ExecStartPre=/bin/bash -l -c 'rostopc list'
+ExecStart=/usr/bin/screen -S msd_teleop -ADm bash -l -c 'roslaunch msd_ros_mk1 teleop.launch'
+Type=simple
+Restart=always
+RestartSec=1s
+ 
+[Install]
+WantedBy=multi-user.target

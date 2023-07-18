@@ -1,0 +1,15 @@
+[Unit]
+Description=msd motor node launcher
+After=roscore.service
+Requires=roscore.service
+ 
+[Service]
+User=jetson
+#ExecStartPre=/bin/bash -l -c 'rostopc list'
+ExecStart=/usr/bin/screen -S msd700 -ADm bash -l -c 'roslaunch msd_ros_mk1 msd700.launch'
+Type=simple
+Restart=always
+RestartSec=10s
+ 
+[Install]
+WantedBy=multi-user.target

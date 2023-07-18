@@ -1,0 +1,12 @@
+[Unit]
+Description=device driver setting for contec-rs485usb-converter
+# After=network-online.target
+
+[Service]
+# ExecStart=/home/jetson/Templates/rs-usb-convert-devset.sh
+ExecStart=/var/myapp/bin/rs-usb-convert-devset.sh
+Restart=no
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

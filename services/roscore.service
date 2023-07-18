@@ -1,0 +1,14 @@
+[Unit]
+Description=ROSCORE launcher
+# After=networking.service
+# Requires=networking.service
+ 
+[Service]
+User=jetson
+ExecStart=/usr/bin/screen -S roscore -ADm bash -l -c 'rosmaster --core -p 11311'
+Type=simple
+Restart=always
+RestartSec=3s
+ 
+[Install]
+WantedBy=multi-user.target
