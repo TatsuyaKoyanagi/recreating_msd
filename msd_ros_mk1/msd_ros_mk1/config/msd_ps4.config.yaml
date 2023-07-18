@@ -1,0 +1,10 @@
+axis_linear:
+  x: 1
+scale_linear:
+  x: 0.47
+axis_angular:
+  yaw: 0
+scale_angular:
+  yaw: 0.78         # 90[degree] = 0.78[radius] 180[degree] = 1.57[radius]
+enable_button: 4    # L1 button
+enable_turbo_button: 8

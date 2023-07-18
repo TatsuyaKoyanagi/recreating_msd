@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<launch>
+  <!--joy key プロポ の切り替え-->
+  <arg name="controller" default="joy"/> 
+  <arg name="joy_config" default="ps3" />
+    
+    <arg name="speed" default="0.01" /> 
+    <arg name="joydev" default="/dev/input/js0" />
+    <arg name="config_filepath" default="$(find msd_ros_mk1)/config/msd_ps4.config.yaml" />
+
+
+    <group if="$(eval controller == 'key')">
+      <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="msd_opelate_key" output="screen">
+        <param name="speed" value="$(arg speed)" />
+      </node>
+    </group>
+
+    <group if="$(eval controller == 'joy')">
+      <node name="msd_joy" pkg="joy" type="joy_node" required="true" >
+        <param name="dev" type="string" value="$(arg joydev)" />
+        <param name="deadzone" value="0.3" />
+      </node>
+      <node name="msd_teleop_joy" pkg="teleop_twist_joy" type="teleop_node" output="screen" >
+        <rosparam command="load" file="$(arg config_filepath)" />
+
+      </node>
+    </group>
+</launch>

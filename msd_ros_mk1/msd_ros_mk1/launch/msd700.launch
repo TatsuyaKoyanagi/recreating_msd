@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node pkg="msd_ros_mk1" type="om_motor.py" name="msd_om_motor" output="screen"/>
+        
+    <!-- roslaunch om_modbus_master om_modbusRTU.launch com:=/dev/ttyUSB0 topicID:=1 baudrate:=115200 updateRate:=1000 firstGen:="1,2," -->
+    <include file="$(find om_modbus_master)/launch/om_modbusRTU.launch">
+        <arg name="com" value="/dev/ttyUSB0"/>
+        <arg name="topicID" value="1"/>
+        <arg name="baudrate" value="115200"/>
+        <arg name="updateRate" value="1000"/>
+        <arg name="firstGen" value="1,2," doc="description for this ary"/>
+        <!-- <arg name="secondGen" value="2" doc="description for this ary"/> -->
+        <!-- <arg name="globalID" value="-1"/> -->
+        <!-- <arg name="axisNum" value="1" />  -->
+    </include>
+</launch>
